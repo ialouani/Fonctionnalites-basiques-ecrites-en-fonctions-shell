@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+#
+# @filename monfichier.sh
+# @date 2019-10-18 15:13
+# @author Prenom Nom <prenom.nom@enseirb-matmeca.fr>
+# @brief ...
+#
+
+#ce n'est pas ici: /bin/sh env bash
+#MAIS: /usr/bin/env bash
+
+CMD=$( basename $0 ) #nom_du_fichier (comme argv*[]).
+nbminparams=1
+
+usage()
+{
+	echo "Usage: $CMD ..."
+}
+
+if [ $# -lt $nbminparams ]
+then
+	usage
+	exit 1
+fi
