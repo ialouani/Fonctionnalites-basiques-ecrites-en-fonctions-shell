@@ -13,6 +13,7 @@ do
 done
 #echo ${List[@]}
 cat dico4.utf8 | awk -F " " '{print $1}' > file.txt
+cat dico5.utf8 | awk -F " " '{print $1}' >> file.txt
 for i in ${List[*]}
 do
     cat file.txt | grep $i > file7.txt
@@ -22,22 +23,18 @@ done
 echo -e "Mots contenant cet ensemble de lettres"
 cat file.txt
 echo -e "-------------------------------"
+mot1=$(cat file.txt | head -1)
+mot_length0=${#mot1};
+export mot_cible=$mot1;
 while read part
 do
-    mot_length=$(echo ${#part})
-    l=0
-    while((l<$mot_length));do
-	ss_mot=$(echo ${part:$l:1})
-	echo ${List[*]} | grep $ss_mot >> file10.txt
-	retvalue=$?
-	if [ $retvalue != 0 ];then
- 	    sed '/^'$part'/d' file.txt > file9.txt
-	    rm file.txt
-	    cat file9.txt > file.txt
-	fi
-        ((l=l+1))
-    done
+    mot=$part
+    mot_length=${#mot}
+    if [[ "$mot_length" -gt "$mot_length0" ]];then
+	mot_cible=$mot
+	mot_length0=$mot_length	
+    fi
 done<file.txt
-echo -e "Le mot qui contient exactement un sous-emsemble(sens large) de la liste de len max"
-cat file.txt 
+echo -e "Le mot qui contient exactement un sous-emsemble(au sens large) de la liste de len max avec d'autres lettres possibles"
+echo "$mot_cible : $mot_length0"
 rm *.txt
