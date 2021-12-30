@@ -80,7 +80,12 @@ do
     done
 done<file.txt
 echo -e "Le mot qui contient exactement un sous-emsemble(sens large) de la liste de len max"
+
+if [ -z $(head file.txt) ];then
+    echo "Pas de solutions"
+    fi
 echo -e "  ************** :->    \c" && cat file.txt 
 rm *.txt
+
 
 
