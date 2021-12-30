@@ -18,7 +18,7 @@ for i in ${List[*]};do
 done
 
 cat file2.txt > dico2.utf8
-rm *.txt
+
 
 cat dico2.utf8 | grep 'Nom' | grep 'SG' > file3.txt
 cat dico2.utf8 | grep 'Ver' | grep 'Inf'> file4.txt
